@@ -166,7 +166,7 @@ class Graph:
 
                 strDFS += ' ' + auxStrDFS
 
-        return auxStrDFS        
+        return strDFS        
 
     def exploreVertexDFS(self, idxVertex, cor = None):
 
