@@ -271,6 +271,9 @@ if __name__ == "__main__":
     strDFS, cor = grafo.exploreVertexDFS(0)
     print('DFS (Profundidade): ', strDFS)
     
+    strDFS = grafo.DFS(0)
+    print('DFS Total (Profundidade): ', strDFS)
+    
     
     
 
