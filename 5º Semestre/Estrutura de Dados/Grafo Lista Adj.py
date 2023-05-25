@@ -148,6 +148,26 @@ class Graph:
         return strBFS, cor
 
         
+    def DFS(self, firtVertex):
+        
+        strDFS = ''
+
+        branco = 0
+
+        #pinta todos os vertices de branco
+        cor = [branco]*len(self.verticesList)
+
+        strDFS, cor = self.exploreVertexDFS(firtVertex)
+
+        for i in range(len(self.verticesList)):
+            
+            if cor[i] == branco:
+                auxStrDFS, cor = self.exploreVertexDFS(i, cor)
+
+                strDFS += ' ' + auxStrDFS
+
+        return auxStrDFS        
+
     def exploreVertexDFS(self, idxVertex, cor = None):
 
         strDFS = ''
@@ -249,7 +269,7 @@ if __name__ == "__main__":
     print( 'BFS (largura): ',grafo.breadthFirstSearch())
 
     strDFS, cor = grafo.exploreVertexDFS(0)
-    print('DFS: ', strDFS)
+    print('DFS (Profundidade): ', strDFS)
     
     
     
