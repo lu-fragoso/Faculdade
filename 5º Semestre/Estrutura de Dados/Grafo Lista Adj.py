@@ -148,6 +148,39 @@ class Graph:
         return strBFS, cor
 
         
+    def exploreVertexDFS(self, idxVertex, cor = None):
+
+        strDFS = ''
+
+        branco = 0
+        cinza = 1
+        preto = 2
+
+        if cor is None:
+            cor = [branco]*len(self.verticesList)
+
+        cor [idxVertex] = cinza
+        
+        pilha  = []
+        pilha.append(idxVertex)
+       
+        verticeAtual = self.verticesList[idxVertex]
+        strDFS+= ' '+ str(verticeAtual.data)
+
+        for idxAdj in self.adjList[idxVertex]:
+            
+            if cor[idxAdj]==branco: 
+                auxStrDFS, cor = self.exploreVertexDFS(idxAdj, cor)
+
+                strDFS += ' ' + auxStrDFS
+
+        # saiu do for significa que visitou todos os adjacentes
+        cor[idxVertex] = preto        
+
+        return strDFS, cor
+
+
+    
     
     def __str__(self):
         
@@ -191,8 +224,8 @@ if __name__ == "__main__":
     grafo.addEdge('h','G')
     
     print(grafo)
-    print( 'BFS (largura): ',grafo.breadthFirstSearch(firstVertex = 1) )
-    print( 'DFS (profundidade): ',grafo.depthFirstSearch(firstVertex = 1) )
+    #print( 'BFS (largura): ',grafo.breadthFirstSearch(firstVertex = 1) )
+    #print( 'DFS (profundidade): ',grafo.depthFirstSearch(firstVertex = 1) )
      
     # cria o segundo grafo
     grafo = Graph(directed=True)
@@ -213,7 +246,10 @@ if __name__ == "__main__":
     print()
     print(grafo)
    
-    print( 'BFS (largura): ',grafo.breadthFirstSearch() )
+    print( 'BFS (largura): ',grafo.breadthFirstSearch())
+
+    strDFS, cor = grafo.exploreVertexDFS(0)
+    print('DFS: ', strDFS)
     
     
     
