@@ -159,12 +159,14 @@ class Graph:
 
         strDFS, cor = self.exploreVertexDFS(firtVertex)
 
+        strDFS += '(' + auxStrDFS + ')'
+        
         for i in range(len(self.verticesList)):
             
             if cor[i] == branco:
                 auxStrDFS, cor = self.exploreVertexDFS(i, cor)
 
-                strDFS += ' ' + auxStrDFS
+                strDFS += '(' + auxStrDFS + ')'
 
         return strDFS        
 
